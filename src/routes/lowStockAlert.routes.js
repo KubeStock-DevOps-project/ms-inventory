@@ -1,41 +1,41 @@
 const express = require("express");
 const router = express.Router();
 const lowStockAlertController = require("../controllers/lowStockAlert.controller");
-const { authenticateAsgardeo } = require("../middlewares/token.middleware");
+const { authenticate } = require("../middlewares/token.middleware");
 
 // Protected routes - require authentication
 // Get low stock alerts
 router.get(
   "/",
-  authenticateAsgardeo,
+  authenticate,
   lowStockAlertController.getLowStockAlerts
 );
 
 // Check for low stock and create alerts
 router.post(
   "/check",
-  authenticateAsgardeo,
+  authenticate,
   lowStockAlertController.checkLowStock
 );
 
 // Get reorder suggestions
 router.get(
   "/reorder-suggestions",
-  authenticateAsgardeo,
+  authenticate,
   lowStockAlertController.getReorderSuggestions
 );
 
 // Get alert statistics
 router.get(
   "/stats",
-  authenticateAsgardeo,
+  authenticate,
   lowStockAlertController.getAlertStats
 );
 
 // Resolve alert
 router.patch(
   "/:id/resolve",
-  authenticateAsgardeo,
+  authenticate,
   lowStockAlertController.resolveAlert
 );
 
