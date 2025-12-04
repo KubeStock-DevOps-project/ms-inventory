@@ -62,8 +62,9 @@ app.get("/metrics", async (req, res) => {
   }
 });
 
+// All routes under /api/inventory prefix for consistent routing
+app.use("/api/inventory/alerts", lowStockAlertRoutes);
 app.use("/api/inventory", inventoryRoutes);
-app.use("/api/alerts", lowStockAlertRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
